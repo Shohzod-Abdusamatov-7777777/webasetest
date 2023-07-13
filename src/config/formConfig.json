@@ -1,0 +1,203 @@
+[
+    {
+        "type": "text",
+        "label": "First name",
+        "name": "firstname",
+        "attrs": {
+            "placeholder": "First name"
+        },
+        "validation": {
+            "required": true
+        }
+    },
+    {
+        "type": "text",
+        "label": "Last name",
+        "name": "lastname",
+        "attrs": {
+            "placeholder": "Last name"
+        },
+        "validation": {
+            "required": true
+        }
+    },
+    {
+        "type": "text",
+        "label": "Your Email",
+        "name": "email",
+        "attrs": {
+            "placeholder": "Your Email"
+        },
+        "validation": {
+            "required": true,
+            "email": true
+        }
+    },
+    {
+        "type": "text",
+        "label": "Your phone Number",
+        "name": "phone",
+        "attrs": {
+            "placeholder": "Your Contact",
+            "mask":"### (##) ### ## ##",
+            "prefix":"+",
+            "unmasked-value":true
+        },
+        "validation": {
+            "required": true
+        }
+    },
+    {
+        "type": "select",
+        "label": "Region",
+        "name": "region",
+        "attrs": {
+            "placeholder": "Your Region",
+            "optionLabel": "name_uz",
+            "optionValue": "id",
+            "parent": "",
+            "options": [
+                {
+                    "id": 1,
+                    "name_uz": "Andijon viloyati",
+                    "name_uzc": "Андижон вилояти",
+                    "name_ru": "Андижанская область"
+                },
+                {
+                    "id": 2,
+                    "name_uz": "Buxoro viloyati",
+                    "name_uzc": "Бухоро вилояти",
+                    "name_ru": "Бухарская область"
+                },
+                {
+                    "id": 3,
+                    "name_uz": "Jizzax viloyati",
+                    "name_uzc": "Жиззах вилояти",
+                    "name_ru": "Джизакская область"
+                },
+                {
+                    "id": 4,
+                    "name_uz": "Qashqadaryo viloyati",
+                    "name_uzc": "Қашқадарё вилояти",
+                    "name_ru": "Кашкадарьинская область"
+                }
+            ]
+        },
+        "validation": {
+            "required": true
+        }
+    },
+    {
+        "type": "select",
+        "label": "District",
+        "name": "district",
+        "attrs": {
+            "placeholder": "Your District",
+            "optionLabel": "name_uz",
+            "optionValue": "id",
+            "parent": "region",
+            "options": [
+                {
+                    "id": 1,
+                    "region_id": 1,
+                    "name_uz": "Oltinko'l tumani",
+                    "name_uzc": "Олтинкўл тумани",
+                    "name_ru": "Алтынкульский район"
+                },
+                {
+                    "id": 2,
+                    "region_id": 1,
+                    "name_uz": "Andijon tumani",
+                    "name_uzc": "Андижон тумани",
+                    "name_ru": "Андижанский район"
+                },
+                {
+                    "id": 3,
+                    "region_id": 1,
+                    "name_uz": "Baliqchi tumani",
+                    "name_uzc": "Балиқчи тумани",
+                    "name_ru": "Балыкчинский район"
+                },
+                {
+                    "id": 195,
+                    "region_id": 3,
+                    "name_uz": "Jizzax tumani",
+                    "name_uzc": "Жиззах тумани",
+                    "name_ru": "Джизакский район"
+                },
+                {
+                    "id": 196,
+                    "region_id": 3,
+                    "name_uz": "Jizzax shahri",
+                    "name_uzc": "Жиззах шаҳри",
+                    "name_ru": "г. Джизак"
+                }
+            ]
+        },
+        "validation": {
+            "required": true,
+            "numeric": true,
+            "minLength": 10
+        }
+    },
+    {
+        "type": "radio",
+        "label": "Sizning darajangiz qanday?",
+        "name": "level",
+        "attrs": {
+            "options": [
+                {
+                    "label": "Junior",
+                    "value": "junior"
+                },
+                {
+                    "label": "Middle",
+                    "value": "middle"
+                },
+                {
+                    "label": "Senior",
+                    "value": "senior"
+                }
+            ]
+        },
+        "validation": {
+            "required": true
+        }
+    },
+    {
+        "type": "checkbox",
+        "label": "Quyidagilardan qaysilarini bilasz?",
+        "name": "skills",
+        "attrs": {
+            "options": [
+                {
+                    "label": "Vue.js",
+                    "value": "vue"
+                },
+                {
+                    "label": "React",
+                    "value": "react"
+                },
+                {
+                    "label": "Angular",
+                    "value": "angular"
+                }
+            ]
+        },
+        "validation": {
+            "required": true,
+            "minLength": 1
+        }
+    },
+    {
+        "type": "textarea",
+        "label": "O'zingiz haqingizda yozing",
+        "name": "comment",
+        "attrs": {
+            "placeholder": "Write here..."
+        },
+        "validation": {
+            "required": false
+        }
+    }
+]

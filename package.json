@@ -1,0 +1,28 @@
+{
+    "name": "webasetest",
+    "private": true,
+    "version": "0.0.1",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vue-tsc && vite build",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "@quasar/extras": "^1.16.5",
+        "pinia": "^2.1.4",
+        "quasar": "^2.12.2",
+        "splitpanes": "^3.1.5",
+        "vue": "^3.3.4"
+    },
+    "devDependencies": {
+        "@quasar/vite-plugin": "^1.4.1",
+        "@types/node": "^20.4.1",
+        "@types/splitpanes": "^2.2.1",
+        "@vitejs/plugin-vue": "^4.2.3",
+        "sass": "^1.32.12",
+        "typescript": "^5.0.2",
+        "vite": "^4.4.0",
+        "vue-tsc": "^1.8.3"
+    }
+}
