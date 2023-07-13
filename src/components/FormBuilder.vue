@@ -12,15 +12,25 @@
 				</q-scroll-area>
 			</div>
 		</Pane>
-		<Pane min-size="20"> </Pane>
 		<Pane min-size="20">
 			<div class="full-height full-width">
 				<q-toolbar class="bg-grey-2">
-					<q-toolbar-title>Forma</q-toolbar-title>
+					<q-toolbar-title>Form settings</q-toolbar-title>
 				</q-toolbar>
 				<q-separator />
 				<q-scroll-area style="height: calc(100vh - 51px); width: 100%">
-					<VueForm :formConfig="formConfig" class="q-pa-md" />
+					<FormSettings :formConfig="config" @update:config="(e) => (config = e)" />
+				</q-scroll-area>
+			</div>
+		</Pane>
+		<Pane min-size="20">
+			<div class="full-height full-width">
+				<q-toolbar class="bg-grey-2">
+					<q-toolbar-title>Form</q-toolbar-title>
+				</q-toolbar>
+				<q-separator />
+				<q-scroll-area style="height: calc(100vh - 51px); width: 100%">
+					<VueForm :formConfig="config" />
 				</q-scroll-area>
 			</div>
 		</Pane>
@@ -28,12 +38,17 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
 import { Splitpanes, Pane } from 'splitpanes';
 import 'splitpanes/dist/splitpanes.css';
 
 import VueForm from 'src/components/VueForm';
 import formConfig from 'src/config/formConfig.json';
 import FormComponents from './FormComponents.vue';
+import FormSettings from './FormSettings.vue';
+import { FieldInterface } from 'src/@types/form';
+
+const config = ref<FieldInterface[]>(formConfig as any);
 </script>
 
 <style>

@@ -1,11 +1,13 @@
 <template>
 	<q-card class="comp-card">
 		<q-card-section class="q-py-none">
-			<q-avatar color="grey-3" text-color="grey" icon="grid_view" />
+			<slot name="header">
+				<q-avatar color="grey-3" text-color="grey" icon="grid_view" />
+			</slot>
 		</q-card-section>
 		<q-card-section class="q-py-sm">
             <q-item-label class="text-h6 q-pb-sm">{{ type }}</q-item-label>
-			<slot name="component"></slot>
+			<slot name="body"></slot>
 		</q-card-section>
 	</q-card>
 </template>

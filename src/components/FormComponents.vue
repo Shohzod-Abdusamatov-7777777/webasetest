@@ -8,7 +8,7 @@
 
 		<div v-for="(comp, i) in componentFilter" :key="i" class="col-6">
 			<ComponentCard :type="comp.type">
-				<template #component>
+				<template #body>
 					<Component
 						:is="getComponent(comp.type as COMPONENT_MAP_TYPES)"
 						:modelValue="['checkbox', 'select'].includes(comp.type) ? [] : ''"

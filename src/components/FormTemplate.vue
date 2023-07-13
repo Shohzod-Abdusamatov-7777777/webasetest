@@ -1,7 +1,6 @@
 <template>
-	<form class="form-template q-col-gutter-sm" @submit.prevent="onSubmit">
-        {{ formData }}
-		<template v-for="(field, i) in formFields" :key="i">
+	<form class="form-template q-pa-md row q-col-gutter-sm" @submit.prevent="onSubmit">
+		<template v-for="(field, i) in fields" :key="i">
 			<template v-if="field.type == 'select'">
 				<Component
 					:is="field.component"
@@ -40,6 +39,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 // Pinia store
 import { useFormStore } from 'src/stores/FormStore';
@@ -47,9 +47,10 @@ import { useFormStore } from 'src/stores/FormStore';
 import { FieldInterface } from 'src/@types/form';
 // utilities
 import { pick } from 'src/utilities/index.ts';
+import { Dialog } from 'quasar';
 
 // Expected props from parent
-withDefaults(
+const props = withDefaults(
 	defineProps<{
 		formFields: FieldInterface[];
 	}>(),
@@ -57,6 +58,8 @@ withDefaults(
 		formFields: () => [],
 	},
 );
+
+const fields = computed(() => props.formFields.sort((a, b) => a.order - b.order));
 
 function getComponentFieldMeta(field: FieldInterface) {
 	return {
@@ -76,6 +79,11 @@ const updateField = (payload: { key: string; value: string }) => {
 
 const onSubmit = () => {
 	console.log('submit', formData.value);
+	Dialog.create({
+		title:'Form result!',
+		message:JSON.stringify(formData.value),
+		html:true
+	})
 };
 </script>
 

@@ -2,6 +2,8 @@ import { COMPONENT_MAP_TYPES } from "src/components/ComponentTypes";
 export interface Attrs {
     options?: string[] | any[];
     placeholder?: string;
+    class?:string;
+    [x: string]: any
 }
 
 export interface Validation {
@@ -18,5 +20,6 @@ export interface FieldInterface {
     attrs?: Options;
     validation?: Validation;
     component?: any;
-    modelValue: any
+    modelValue: any;
+    order:number
 }

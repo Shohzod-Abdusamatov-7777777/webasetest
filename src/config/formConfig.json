@@ -1,21 +1,13 @@
 [
-    {
-        "type": "text",
-        "label": "First name",
-        "name": "firstname",
-        "attrs": {
-            "placeholder": "First name"
-        },
-        "validation": {
-            "required": true
-        }
-    },
+  
     {
         "type": "text",
         "label": "Last name",
         "name": "lastname",
+        "order":2,
         "attrs": {
-            "placeholder": "Last name"
+            "placeholder": "Last name",
+            "class":"col-6"
         },
         "validation": {
             "required": true
@@ -25,8 +17,10 @@
         "type": "text",
         "label": "Your Email",
         "name": "email",
+        "order":3,
         "attrs": {
-            "placeholder": "Your Email"
+            "placeholder": "Your Email",
+            "class":"col-12"
         },
         "validation": {
             "required": true,
@@ -35,13 +29,28 @@
     },
     {
         "type": "text",
+        "label": "First name",
+        "name": "firstname",
+        "order":1,
+        "attrs": {
+            "placeholder": "First name",
+            "class":"col-6"
+        },
+        "validation": {
+            "required": true
+        }
+    },
+    {
+        "type": "text",
         "label": "Your phone Number",
         "name": "phone",
+        "order":4,
         "attrs": {
             "placeholder": "Your Contact",
             "mask":"### (##) ### ## ##",
             "prefix":"+",
-            "unmasked-value":true
+            "unmasked-value":true,
+            "class":"col-12"
         },
         "validation": {
             "required": true
@@ -51,8 +60,10 @@
         "type": "select",
         "label": "Region",
         "name": "region",
+        "order":5,
         "attrs": {
             "placeholder": "Your Region",
+            "class":"col-6",
             "optionLabel": "name_uz",
             "optionValue": "id",
             "parent": "",
@@ -91,8 +102,10 @@
         "type": "select",
         "label": "District",
         "name": "district",
+        "order":6,
         "attrs": {
             "placeholder": "Your District",
+            "class":"col-6",
             "optionLabel": "name_uz",
             "optionValue": "id",
             "parent": "region",
@@ -144,7 +157,9 @@
         "type": "radio",
         "label": "Sizning darajangiz qanday?",
         "name": "level",
+        "order":7,
         "attrs": {
+            "class":"col-12",
             "options": [
                 {
                     "label": "Junior",
@@ -168,7 +183,9 @@
         "type": "checkbox",
         "label": "Quyidagilardan qaysilarini bilasz?",
         "name": "skills",
+        "order":8,
         "attrs": {
+            "class":"col-12",
             "options": [
                 {
                     "label": "Vue.js",
@@ -193,8 +210,10 @@
         "type": "textarea",
         "label": "O'zingiz haqingizda yozing",
         "name": "comment",
+        "order":9,
         "attrs": {
-            "placeholder": "Write here..."
+            "placeholder": "Write here...",
+            "class":"col-12"
         },
         "validation": {
             "required": false
