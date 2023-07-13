@@ -3,8 +3,7 @@
         "type": "text",
         "label": "Text",
         "attrs": {
-            "placeholder": "First name",
-            "disable":true
+            "placeholder": "First name"
         }
     },
     {
@@ -12,8 +11,7 @@
         "label": "Select",
         "attrs": {
             "placeholder": "Select",
-            "options": [],
-            "disable":true
+            "options": []
         }
     },
     {
@@ -25,8 +23,7 @@
                     "label": "Option 1",
                     "value": "opt1"
                 }
-            ],
-            "disable":true
+            ]
         }
     },
     {
@@ -38,8 +35,7 @@
                     "label": "Option 1",
                     "value": "opt1"
                 }
-            ],
-            "disable":true
+            ]
         }
     },
     {
@@ -47,7 +43,6 @@
         "label": "Textarea",
         "attrs": {
             "placeholder": "Textarea",
-            "disable":true,
             "rows":2
         }
     }

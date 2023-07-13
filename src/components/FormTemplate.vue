@@ -1,6 +1,6 @@
 <template>
 	<form class="form-template q-pa-md row q-col-gutter-sm" @submit.prevent="onSubmit">
-		<template v-for="(field, i) in fields" :key="i">
+		<template v-for="(field) in fields">
 			<template v-if="field.type == 'select'">
 				<Component
 					:is="field.component"
