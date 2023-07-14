@@ -67,6 +67,10 @@
 					<q-input outlined v-model="selectedField.name" />
 				</div>
 				<div class="col-12">
+					<q-item-label class="q-pb-xs">Column Label</q-item-label>
+					<q-input outlined v-model="selectedField.label" />
+				</div>
+				<div class="col-12">
 					<q-item-label class="q-pb-xs">Column Order</q-item-label>
 					<q-input outlined v-model="selectedField.order" />
 				</div>

@@ -1,6 +1,6 @@
 <template>
 	<form class="form-template q-pa-md row q-col-gutter-sm" @submit.prevent="onSubmit">
-		<template v-for="(field) in fields">
+		<template v-for="field in fields">
 			<template v-if="field.type == 'select'">
 				<Component
 					:is="field.component"
@@ -39,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed} from 'vue';
 import { storeToRefs } from 'pinia';
 // Pinia store
 import { useFormStore } from 'src/stores/FormStore';
@@ -80,10 +80,10 @@ const updateField = (payload: { key: string; value: string }) => {
 const onSubmit = () => {
 	console.log('submit', formData.value);
 	Dialog.create({
-		title:'Form result!',
-		message:JSON.stringify(formData.value),
-		html:true
-	})
+		title: 'Form result!',
+		message: JSON.stringify(formData.value),
+		html: true,
+	});
 };
 </script>
 

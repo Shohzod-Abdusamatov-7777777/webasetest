@@ -42,13 +42,13 @@ import { ref } from 'vue';
 import { Splitpanes, Pane } from 'splitpanes';
 import 'splitpanes/dist/splitpanes.css';
 
-import VueForm from 'src/components/VueForm';
+import VueForm from 'src/components/VueForm.vue';
 import formConfig from 'src/config/formConfig.json';
 import FormComponents from './FormComponents.vue';
 import FormSettings from './FormSettings.vue';
 import { FieldInterface } from 'src/@types/form';
 
-const config = ref<FieldInterface[]>(formConfig as any);
+const config = ref<FieldInterface[]>([...formConfig] as any);
 </script>
 
 <style>
