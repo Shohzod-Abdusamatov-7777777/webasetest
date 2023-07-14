@@ -36,10 +36,24 @@
 			<q-btn type="submit" label="Submit" color="primary" unelevated no-caps />
 		</div>
 	</form>
+
+	<q-dialog v-model="dialog">
+		<q-card style="min-width:400px max-width:80%">
+			<q-card-section>
+				<h4 class="text-center text-positive">Result</h4>
+
+				<div class="flex flex-center column q-my-md text-body1">
+					<code>
+						{{formData}}
+					</code>
+				</div>
+			</q-card-section>
+		</q-card>
+	</q-dialog>
 </template>
 
 <script setup lang="ts">
-import { computed} from 'vue';
+import { computed, ref } from 'vue';
 import { storeToRefs } from 'pinia';
 // Pinia store
 import { useFormStore } from 'src/stores/FormStore';
@@ -47,7 +61,6 @@ import { useFormStore } from 'src/stores/FormStore';
 import { FieldInterface } from 'src/@types/form';
 // utilities
 import { pick } from 'src/utilities/index.ts';
-import { Dialog } from 'quasar';
 
 // Expected props from parent
 const props = withDefaults(
@@ -59,6 +72,7 @@ const props = withDefaults(
 	},
 );
 
+const dialog = ref(false);
 const fields = computed(() => props.formFields.sort((a, b) => a.order - b.order));
 
 function getComponentFieldMeta(field: FieldInterface) {
@@ -79,11 +93,7 @@ const updateField = (payload: { key: string; value: string }) => {
 
 const onSubmit = () => {
 	console.log('submit', formData.value);
-	Dialog.create({
-		title: 'Form result!',
-		message: JSON.stringify(formData.value),
-		html: true,
-	});
+	dialog.value = true;
 };
 </script>
 

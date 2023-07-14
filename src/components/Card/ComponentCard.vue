@@ -29,5 +29,11 @@ defineProps<{ type: string }>();
 		border: 1px solid #bdbdbd;
 		box-shadow: 0 0 0.5rem #e5e5e5;
 	}
+	&.positive{
+		border-color: $positive;
+	}
+	&.negative{
+		border-color: $negative;
+	}
 }
 </style>

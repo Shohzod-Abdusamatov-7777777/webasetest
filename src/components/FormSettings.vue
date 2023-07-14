@@ -6,7 +6,7 @@
 					<ComponentCard
 						:type="field.type"
 						style="box-shadow: none; border-style: dashed; cursor: default"
-						@click="openSetting(field)"
+						:class="field.name ? 'positive' : 'negative'"
 					>
 						<template #header>
 							<q-avatar color="grey-3" text-color="grey">
@@ -19,14 +19,21 @@
 								unelevated
 								class="handle bg-grey-2 text-grey float-right"
 								style="cursor: grab"
-								@click="removeField(i)"
+							></q-btn>
+							<q-btn
+								icon="settings"
+								color="primary"
+								round
+								unelevated
+								class="bg-blue-2 text-blue-12 q-mx-xs float-right"
+								@click="openSetting(field)"
 							></q-btn>
 							<q-btn
 								icon="close"
 								color="negative"
 								round
 								unelevated
-								class="bg-red-2 text-red float-right q-mx-sm"
+								class="bg-red-2 text-red float-right"
 								@click="removeField(i)"
 							></q-btn>
 						</template>
@@ -55,7 +62,7 @@
 
 	<!-- dialog -->
 	<q-dialog v-model="dialog" position="top" class="full-height">
-		<q-card style="width:450px" v-if="selectedField">
+		<q-card style="width: 450px" v-if="selectedField">
 			<q-card-section class="q-pa-sm">
 				<h6>Settings</h6>
 				<q-separator />
@@ -80,8 +87,8 @@
 				</div>
 			</q-card-section>
 
-			<q-card-section>
-				<q-btn label="Save" @click="saveSettings" outlined color="primary" no-caps class="float-right" />
+			<q-card-section class="flex justify-end">
+				<q-btn label="Save" @click="saveSettings" outlined color="primary" no-caps />
 			</q-card-section>
 		</q-card>
 	</q-dialog>
@@ -127,15 +134,22 @@ const removeField = (i: number) => {
 };
 
 const openSetting = (field: FieldInterface) => {
-	selectedField.value = {...field};
+	selectedField.value = JSON.parse(JSON.stringify(field));
 	dialog.value = true;
 };
 
+defineExpose({
+	openSetting,
+});
 
-const saveSettings=()=>{
-	dialog.value=false
-	console.log(selectedField.value)
-}
+const saveSettings = () => {
+	const index = settings.value.findIndex((e) => e.id == selectedField.value?.id);
+	if (index > -1 && selectedField.value) {
+		settings.value.splice(index, 1, selectedField.value);
+	}
+	dialog.value = false;
+	selectedField.value = null;
+};
 </script>
 
 <style>

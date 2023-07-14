@@ -8,7 +8,7 @@
 				</q-toolbar>
 				<q-separator />
 				<q-scroll-area style="height: calc(100vh - 51px); width: 100%">
-					<FormComponents class="q-pa-md" />
+					<FormComponents @addField="(e) => addField(e)" />
 				</q-scroll-area>
 			</div>
 		</Pane>
@@ -19,7 +19,7 @@
 				</q-toolbar>
 				<q-separator />
 				<q-scroll-area style="height: calc(100vh - 51px); width: 100%">
-					<FormSettings :formConfig="config" @update:config="(e) => (config = e)" />
+					<FormSettings ref="settingRef" :formConfig="config" @update:config="(e) => (config = e)" />
 				</q-scroll-area>
 			</div>
 		</Pane>
@@ -38,17 +38,47 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, nextTick } from 'vue';
+import { v4 as uuidv4 } from 'uuid';
 import { Splitpanes, Pane } from 'splitpanes';
 import 'splitpanes/dist/splitpanes.css';
 
 import VueForm from 'src/components/VueForm.vue';
-import formConfig from 'src/config/formConfig.json';
 import FormComponents from './FormComponents.vue';
 import FormSettings from './FormSettings.vue';
+// config
+import formConfig from 'src/config/formConfig.json';
+// types
 import { FieldInterface } from 'src/@types/form';
 
-const config = ref<FieldInterface[]>([...formConfig] as any);
+const settingRef = ref<typeof FormSettings | null>(null);
+const config = ref([...(formConfig.map((e) => ({ ...e, id: uuidv4() })) as FieldInterface[])]);
+
+const addField = (field: FieldInterface) => {
+	const order = config.value.reduce((maxV, obj) => (maxV >= obj.order ? maxV : obj.order), 0) + 1;
+	const newField: FieldInterface = {
+		...field,
+		order,
+		id: uuidv4(),
+		attrs: { ...field.attrs, class: 'col-12' },
+		name: 'field' + order,
+	};
+	if (newField.type == 'select') {
+		newField.attrs = {
+			...newField.attrs,
+			options: [
+				{
+					label: 'Option qoshildi',
+					value: 'opt1',
+				},
+			],
+		};
+	}
+	config.value = [...config.value, newField];
+	nextTick(() => {
+		settingRef.value?.openSetting(newField);
+	});
+};
 </script>
 
 <style>

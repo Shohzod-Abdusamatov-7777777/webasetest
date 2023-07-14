@@ -11,24 +11,31 @@ import { computed } from 'vue';
 
 const props = defineProps<{ formConfig: FieldInterface[] }>();
 
-console.log(props.formConfig, 'vue form');
-// Setup empty store for form data
 const store = useFormStore();
 
-const formFields = computed(() =>
-	props.formConfig.map((field) => {
-		let component = getComponent(field.type);
-		let val: any = '';
-        if(field.type=='checkbox'){
-            val = [];
-            store.formData[field.name] = [];
+const formFields = computed(() => {
+	const formDataKeys = Object.keys(store.formData);
 
-        }else{
-            val = null;
-				store.formData[field.name] = '';
-        }
+	// remove object key
+	formDataKeys.forEach((fKey) => {
+		if (!props.formConfig.find((e) => e.name == fKey)) {
+			delete store.formData[fKey];
+		}
+	});
+
+	return props.formConfig.map((field) => {
+		let component = getComponent(field.type);
+
+		let val: any = '';
+		if (field.type == 'checkbox') {
+			val = [];
+			store.formData[field.name] = [];
+		} else {
+			val = null;
+			store.formData[field.name] = '';
+		}
 
 		return { ...field, modelValue: val, component };
-	}),
-);
+	});
+});
 </script>

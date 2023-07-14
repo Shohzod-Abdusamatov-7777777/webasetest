@@ -14,12 +14,13 @@ export interface Validation {
 }
 
 export interface FieldInterface {
+    id:string; // uuid
     type: COMPONENT_MAP_TYPES;
     name: string;
     label?: string;
     attrs?: Options;
     validation?: Validation;
     component?: any;
-    modelValue: any;
+    modelValue?: any;
     order:number
 }
